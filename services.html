@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | Ciara Daly Beauty & Academy — Brows, Lashes, Permanent Makeup, Makeup</title>
-    <meta name="description" content="Luxury brow styling, lash lifts, permanent makeup, and professional makeup services in Sydney by WorldSkills award-winning artist Ciara Daly.">
+    <meta name="description" content="Brows, lashes, permanent makeup, and makeup services in Sydney by Ciara Daly. Natural-looking results, thoughtful consultation, and refined technique.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-line"></div>
+            <div class="preloader-brand">
+                <div class="preloader-name-mask">
+                    <span class="preloader-name">Ciara Daly</span>
+                </div>
+                <div class="preloader-sub">Beauty & Academy</div>
+            </div>
+        </div>
+    </div>
+
     <header>
         <nav class="container">
             <div class="logo">
@@ -21,7 +34,7 @@
                 <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="academy.html">Academy</a></li>
                 <li><a href="index.html#gallery">Gallery</a></li>
-                <li><a href="index.html#contact" class="btn-book">Book Now</a></li>
+                <li><a href="index.html#contact" class="btn-book">Book</a></li>
             </ul>
             <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
                 <span></span>
@@ -32,13 +45,36 @@
     </header>
 
     <main>
-        <section class="page-hero">
+        <section class="page-hero" data-deco="Services">
             <div class="container">
                 <span class="eyebrow">Brows — Lashes — Permanent Makeup — Makeup</span>
-                <h1>Our <em>Services</em></h1>
-                <p>Every treatment begins with a consultation and is tailored to your features, your goals, and the level of finish you want to carry into everyday life.</p>
+                <h1>Treatments, done <em>properly</em></h1>
+                <p>Every appointment starts with a consultation, so the finish feels balanced, flattering and easy to wear in everyday life.</p>
             </div>
         </section>
+
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker-track">
+                <span>BROWS</span><span class="dot">&middot;</span>
+                <span>LASHES</span><span class="dot">&middot;</span>
+                <span>PERMANENT MAKEUP</span><span class="dot">&middot;</span>
+                <span>MAKEUP</span><span class="dot">&middot;</span>
+                <span>CONSULTATION</span><span class="dot">&middot;</span>
+                <span>SYDNEY</span><span class="dot">&middot;</span>
+                <span>BROWS</span><span class="dot">&middot;</span>
+                <span>LASHES</span><span class="dot">&middot;</span>
+                <span>PERMANENT MAKEUP</span><span class="dot">&middot;</span>
+                <span>MAKEUP</span><span class="dot">&middot;</span>
+                <span>CONSULTATION</span><span class="dot">&middot;</span>
+                <span>SYDNEY</span><span class="dot">&middot;</span>
+                <span>BROWS</span><span class="dot">&middot;</span>
+                <span>LASHES</span><span class="dot">&middot;</span>
+                <span>PERMANENT MAKEUP</span><span class="dot">&middot;</span>
+                <span>MAKEUP</span><span class="dot">&middot;</span>
+                <span>CONSULTATION</span><span class="dot">&middot;</span>
+                <span>SYDNEY</span><span class="dot">&middot;</span>
+            </div>
+        </div>
 
         <div class="service-blocks">
             <section class="service-block fade-up">
@@ -53,10 +89,11 @@
                         >
                     </div>
                     <div class="service-block-text">
+                        <span class="service-block-number">01</span>
                         <span class="eyebrow">Shaping — Tinting — Lamination</span>
                         <h2>Brows</h2>
-                        <p>Every brow service begins with a thorough consultation and facial mapping to determine the shape, thickness, and arch that best complements your natural features.</p>
-                        <p>From precise shaping and sculpting to brow lamination and tinting, each treatment is tailored to achieve your desired finish — whether that's a soft, natural look or a bold, defined brow.</p>
+                        <p>Brow work starts with shape, balance and the small details that make everything sit properly. Ciara maps each brow to your features so the result feels polished, flattering and still like you.</p>
+                        <p>From shaping and tinting to lamination, the finish can be kept soft and natural or a little more defined, depending on how you like to wear your brows.</p>
                         <a href="index.html#contact" class="btn-gold">Book a Consultation</a>
                     </div>
                 </div>
@@ -74,10 +111,11 @@
                         >
                     </div>
                     <div class="service-block-text">
+                        <span class="service-block-number">02</span>
                         <span class="eyebrow">Lift — Tint — Define</span>
                         <h2>Lashes</h2>
-                        <p>Lash services are designed to enhance your natural lashes without the need for extensions. A professional lash lift creates beautiful curl and definition, while tinting adds depth and colour.</p>
-                        <p>The result is bright, open eyes with a clean finish that lasts between appointments.</p>
+                        <p>Lash lifts and tints are designed to bring out your natural lashes rather than cover them up. The focus is clean lift, good separation and an easy finish that opens the eye.</p>
+                        <p>It is a low-maintenance treatment with a polished result that lasts beautifully between appointments.</p>
                         <a href="index.html#contact" class="btn-gold">Book a Consultation</a>
                     </div>
                 </div>
@@ -95,10 +133,11 @@
                         >
                     </div>
                     <div class="service-block-text">
+                        <span class="service-block-number">03</span>
                         <span class="eyebrow">Lip Blush — Cosmetic Tattooing</span>
                         <h2>Permanent Makeup</h2>
-                        <p>Permanent makeup offers soft, natural-looking enhancement that lasts. Lip blush adds colour, definition, and symmetry with a technique designed to look like your lips — only better.</p>
-                        <p>Every procedure includes a detailed consultation, colour matching, and a follow-up appointment to ensure the perfect result.</p>
+                        <p>Permanent makeup is approached with a light hand and a strong eye for balance. Lip blush and cosmetic tattooing are designed to enhance colour, shape and symmetry without looking heavy.</p>
+                        <p>Each treatment includes a detailed consultation, colour matching and aftercare guidance, so the healed result feels soft, natural and considered.</p>
                         <a href="index.html#contact" class="btn-gold">Book a Consultation</a>
                     </div>
                 </div>
@@ -116,10 +155,11 @@
                         >
                     </div>
                     <div class="service-block-text">
+                        <span class="service-block-number">04</span>
                         <span class="eyebrow">Glam — Events — Bridal</span>
                         <h2>Makeup</h2>
-                        <p>Professional makeup artistry for any occasion. From soft, polished day looks to full glam editorial finishes, each application is detail-focused and designed to photograph beautifully.</p>
-                        <p>Using premium products and refined technique, the result is camera-ready skin with lasting wear.</p>
+                        <p>Makeup is tailored to the occasion and to how you want to feel. From soft polish to full glam, the focus is fresh skin, balance and detail that reads beautifully in person and on camera.</p>
+                        <p>The end result is refined, wearable and finished properly, without feeling overdone.</p>
                         <a href="index.html#contact" class="btn-gold">Book a Consultation</a>
                     </div>
                 </div>
@@ -128,8 +168,8 @@
 
         <section class="cta-banner">
             <div class="container">
-                <h2>Ready to Book?</h2>
-                <p>Every service begins with a free consultation. Get in touch to discuss what you're looking for and find the right treatment for you.</p>
+                <h2>Book a treatment or ask a question</h2>
+                <p>If you're not sure which service is right, get in touch and we'll help you choose the best fit.</p>
                 <a href="index.html#contact" class="btn-gold">Get In Touch</a>
             </div>
         </section>
@@ -140,7 +180,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="index.html">CIARA DALY</a>
-                    <p>Luxury beauty treatments and artist education in Sydney.</p>
+                    <p>Refined beauty treatments and thoughtful artist education in Sydney.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Navigate</h4>

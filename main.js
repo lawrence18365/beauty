@@ -1,6 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
+       Preloader
+       ========================================= */
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        if (sessionStorage.getItem('cd_preloader')) {
+            preloader.remove();
+        } else {
+            document.body.classList.add('preloader-active');
+            sessionStorage.setItem('cd_preloader', '1');
+
+            setTimeout(() => {
+                preloader.classList.add('preloader-exit');
+                document.body.classList.remove('preloader-active');
+
+                preloader.addEventListener('animationend', () => {
+                    preloader.remove();
+                });
+            }, 2100);
+        }
+    }
+
+
+    /* =========================================
        Mobile Menu
        ========================================= */
     const toggle = document.querySelector('.mobile-menu-toggle');

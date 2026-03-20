@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you for your message! Ciara or one of her team members will get back to you shortly.');
+            alert("Thanks for your message. I'll be back to you soon.");
             form.reset();
         });
     }

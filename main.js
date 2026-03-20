@@ -54,6 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================================
+       Header Hide on Scroll Down
+       ========================================= */
+    const header = document.querySelector('header');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentY = window.scrollY;
+        if (currentY > lastScrollY && currentY > 80) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+        lastScrollY = currentY;
+    });
+
+
+    /* =========================================
        Active Nav Link on Scroll
        ========================================= */
     const sections = document.querySelectorAll('section[id]');

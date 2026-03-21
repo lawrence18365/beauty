@@ -1001,20 +1001,16 @@ header nav {
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
     margin-top: clamp(2rem, 4vw, 3.5rem);
-    background: rgba(250, 246, 240, 0.06);
-    border: 1px solid rgba(250, 246, 240, 0.08);
+    align-items: end;
 }
 
 .testimonial-photo {
     overflow: hidden;
-    aspect-ratio: 3 / 4;
 }
 
 .testimonial-photo img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    height: auto;
     display: block;
 }
 
@@ -2004,10 +2000,6 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .testimonial-photo {
-        aspect-ratio: 16 / 10;
-    }
-
     /* Portrait strip — mobile: horizontal scroll */
     .portrait-strip-track {
         grid-auto-columns: 45vw;
@@ -2246,11 +2238,6 @@ footer {
         grid-auto-columns: 55vw;
         height: 220px;
     }
-
-    /* Testimonial photos — small phones */
-    .testimonial-photo {
-        aspect-ratio: 1 / 1;
-    }
 }
 
 
@@ -2286,10 +2273,5 @@ footer {
     /* Portrait strip — large screens */
     .portrait-strip-track {
         height: clamp(480px, 36vw, 600px);
-    }
-
-    /* Testimonial photos — larger */
-    .testimonial-photo {
-        aspect-ratio: 3 / 4;
     }
 }

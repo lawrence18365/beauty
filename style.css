@@ -35,6 +35,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    background-color: var(--charcoal);
+    overscroll-behavior: none;
 }
 
 body {

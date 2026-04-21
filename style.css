@@ -966,13 +966,103 @@ header nav {
 
 
 /* =========================================
-   SERVICES
+   SERVICES — Editorial Index
    ========================================= */
 .services {
-    padding: clamp(3.5rem, 5vw, 5.5rem) 0;
+    padding: clamp(4.5rem, 7vw, 7rem) 0 clamp(4rem, 6vw, 6rem);
     background: var(--cream-dark);
+    position: relative;
 }
 
+/* Faint vertical hairline on far right as editorial marginalia */
+.services::after {
+    content: '';
+    position: absolute;
+    top: clamp(3rem, 6vw, 5rem);
+    right: clamp(1.5rem, 3vw, 2.5rem);
+    width: 1px;
+    height: clamp(60px, 8vw, 100px);
+    background: rgba(26, 23, 20, 0.15);
+    pointer-events: none;
+}
+
+/* --- Header --- */
+.services-header {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.services-header-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: clamp(1rem, 2vw, 1.4rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+    border-bottom: 1px solid rgba(26, 23, 20, 0.16);
+}
+
+.services-header-label {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.services-header-aside {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    color: var(--muted);
+    letter-spacing: 0.005em;
+    white-space: nowrap;
+}
+
+.services-header-aside-rule {
+    display: block;
+    width: clamp(28px, 5vw, 56px);
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+.services-header-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4.5vw, 4.5rem);
+    align-items: end;
+}
+
+.services-headline {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.012em;
+    margin: 0;
+    color: var(--charcoal);
+    max-width: 13ch;
+}
+
+.services-headline em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+}
+
+.services-lede {
+    font-size: clamp(0.92rem, 1vw, 0.98rem);
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 40ch;
+    margin: 0;
+    padding-left: clamp(0rem, 2vw, 1.75rem);
+    border-left: 1px solid rgba(26, 23, 20, 0.18);
+}
+
+/* --- Grid --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -981,18 +1071,25 @@ header nav {
 }
 
 .service-card {
-    border-right: var(--border-thick);
-    border-bottom: var(--border-thick);
-    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+    border-right: var(--border-thick);
+    border-bottom: var(--border-thick);
+    background: var(--cream);
+    transition: background 0.5s var(--ease-out);
 }
 
+.service-card:hover {
+    background: #F7F2EA;
+}
+
+/* --- Media --- */
 .service-media {
+    position: relative;
     overflow: hidden;
     aspect-ratio: 4 / 5;
-    max-height: 38vh;
+    max-height: 44vh;
     border-bottom: var(--border-thick);
     flex-shrink: 0;
 }
@@ -1002,27 +1099,203 @@ header nav {
     height: 100%;
     object-fit: cover;
     object-position: center center;
+    transition: transform 1.4s var(--ease-out), filter 0.8s var(--ease-out);
+    will-change: transform;
 }
 
+.service-card:hover .service-media img {
+    transform: scale(1.035);
+}
+
+/* --- Body --- */
 .card-body {
-    padding: clamp(1.5rem, 3vw, 2.5rem);
+    position: relative;
+    padding: clamp(2rem, 3.4vw, 2.75rem) clamp(1.6rem, 3vw, 2.25rem) clamp(1.75rem, 3vw, 2.25rem);
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.card-body h3 {
-    margin-bottom: 0.75rem;
+/* Numbered plate — tabs across the seam between image and body */
+.service-plate {
+    position: absolute;
+    top: 0;
+    left: clamp(1.4rem, 3vw, 2rem);
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    padding: 0.55rem 0.95rem 0.5rem;
+    background: var(--cream);
+    border: 1px solid var(--charcoal);
+    line-height: 1;
+    z-index: 3;
+    transition: transform 0.55s var(--ease-out), background 0.5s var(--ease-out);
+    pointer-events: none;
 }
 
-.card-body p {
+.service-card:hover .service-plate {
+    background: var(--cream-dark);
+    transform: translateY(-50%) translateY(-2px);
+}
+
+.service-plate-label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.service-plate-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.01em;
+}
+
+/* Kicker — small rule + eyebrow */
+.card-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.1rem;
+}
+
+.card-kicker-rule {
+    display: block;
+    width: clamp(18px, 3vw, 28px);
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.85rem, 2.4vw, 2.3rem);
+    line-height: 1.05;
+    letter-spacing: -0.008em;
+    margin: 0;
+    color: var(--charcoal);
+    position: relative;
+    display: inline-block;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.7s var(--ease-out);
+}
+
+.service-card:hover .card-title::after {
+    width: clamp(28px, 4.5vw, 44px);
+}
+
+.card-tagline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.15vw, 1.1rem);
+    line-height: 1.4;
+    color: var(--muted);
+    margin: 1.15rem 0 1.1rem;
+    max-width: 22ch;
+}
+
+.card-tagline em {
+    font-style: italic;
+}
+
+.card-desc {
+    font-family: var(--font-body);
     font-size: 0.88rem;
-    margin-bottom: 1.5rem;
+    line-height: 1.72;
+    color: var(--charcoal);
+    margin: 0 0 1.9rem;
     flex: 1;
+    max-width: 34ch;
 }
 
-.card-body .link-btn {
+/* Refined link */
+.card-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    align-self: flex-start;
     margin-top: auto;
+    padding-bottom: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    isolation: isolate;
+}
+
+.card-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background: var(--charcoal);
+    transform-origin: left center;
+    transition: transform 0.45s var(--ease-out);
+}
+
+.service-card:hover .card-link::after {
+    animation: card-link-swap 0.75s var(--ease-out) forwards;
+}
+
+@keyframes card-link-swap {
+    0%   { transform: scaleX(1); transform-origin: right center; }
+    45%  { transform: scaleX(0); transform-origin: right center; }
+    55%  { transform: scaleX(0); transform-origin: left center; }
+    100% { transform: scaleX(1); transform-origin: left center; }
+}
+
+.card-link-arrow {
+    display: inline-flex;
+    width: 22px;
+    line-height: 0;
+    color: var(--charcoal);
+    transform: translateX(0);
+    transition: transform 0.45s var(--ease-out), color 0.45s var(--ease-out);
+}
+
+.card-link-arrow svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.service-card:hover .card-link-arrow {
+    transform: translateX(6px);
+    color: var(--gold);
+}
+
+/* Section-level CTA */
+.services .section-cta {
+    margin-top: clamp(2.25rem, 4vw, 3.25rem);
+    text-align: center;
 }
 
 .price {
@@ -2004,6 +2277,20 @@ footer {
         grid-column: span 2;
     }
 
+    .services-header-main {
+        grid-template-columns: 1fr;
+        gap: clamp(1.25rem, 2.5vw, 2rem);
+        align-items: start;
+    }
+
+    .services-lede {
+        padding-left: 0;
+        border-left: none;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(26, 23, 20, 0.16);
+        max-width: 56ch;
+    }
+
     .academy-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -2438,17 +2725,51 @@ footer {
 
     /* Tighter card text */
     .card-body {
-        padding: 1.5rem 1.4rem 1.8rem;
+        padding: 2rem 1.4rem 1.8rem;
     }
 
-    .card-body h3 {
-        font-size: clamp(1.5rem, 5vw, 1.75rem);
-        margin-bottom: 0.5rem;
+    .card-title {
+        font-size: clamp(1.55rem, 5vw, 1.85rem);
     }
 
-    .card-body p {
+    .card-tagline {
+        font-size: 1rem;
+        margin: 0.9rem 0 0.9rem;
+    }
+
+    .card-desc {
         font-size: 0.92rem;
-        line-height: 1.55;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-kicker {
+        font-size: 0.6rem;
+        letter-spacing: 0.22em;
+        margin-bottom: 0.9rem;
+    }
+
+    .service-plate {
+        left: 1.15rem;
+        padding: 0.45rem 0.8rem 0.4rem;
+    }
+
+    .service-plate-num {
+        font-size: 1.1rem;
+    }
+
+    .services-headline {
+        font-size: clamp(2.1rem, 8.5vw, 3rem);
+        max-width: 14ch;
+    }
+
+    .services-header-top {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+    }
+
+    .services-header-aside {
+        font-size: 0.9rem;
     }
 
     .academy-grid {

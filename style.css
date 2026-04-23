@@ -3215,7 +3215,8 @@ footer {
 
     /* Service blocks — tighter */
     .service-block-image {
-        max-height: 200px;
+        aspect-ratio: 4 / 5;
+        max-height: none;
     }
 
     .service-block-text {

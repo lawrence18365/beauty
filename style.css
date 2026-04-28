@@ -3121,6 +3121,319 @@ footer {
 
 
 /* =========================================
+   STUDIO LETTERS — Email capture (site-wide)
+   Editorial subscription card on cream-dark canvas with a faint
+   italic "Letters" watermark. Lives above the footer on every page.
+   ========================================= */
+.studio-letters {
+    position: relative;
+    padding: clamp(4rem, 7vw, 6.5rem) 0 clamp(4rem, 7vw, 6.5rem);
+    background: var(--cream-dark);
+    border-top: var(--border-thick);
+    border-bottom: var(--border-thick);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Decorative oversized italic word — same trick as page-hero / accreditation */
+.studio-letters::before {
+    content: attr(data-deco);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(8rem, 22vw, 24rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(184, 148, 90, 0.07);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.studio-letters .container {
+    position: relative;
+    z-index: 1;
+}
+
+.studio-letters-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+}
+
+/* ---- Copy column ---- */
+.studio-letters-copy {
+    max-width: 540px;
+}
+
+.studio-letters-copy .eyebrow {
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--gold);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.studio-letters-copy h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    margin-bottom: 1.4rem;
+    max-width: 12ch;
+}
+
+.studio-letters-copy h2 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+}
+
+.studio-letters-lede {
+    font-size: 0.96rem;
+    line-height: 1.7;
+    color: var(--charcoal);
+    opacity: 0.85;
+    max-width: 50ch;
+    margin-bottom: 1.5rem;
+}
+
+.studio-letters-bullets {
+    list-style: none;
+    border-top: 1px solid rgba(26, 23, 20, 0.16);
+    padding-top: 1.1rem;
+    margin: 0;
+}
+
+.studio-letters-bullets li {
+    position: relative;
+    padding: 0.5rem 0 0.5rem 1.4rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--muted);
+    border-bottom: 1px dotted rgba(26, 23, 20, 0.13);
+}
+
+.studio-letters-bullets li:last-child {
+    border-bottom: none;
+}
+
+.studio-letters-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.95rem;
+    width: 8px;
+    height: 1px;
+    background: var(--gold);
+}
+
+/* ---- Form card ---- */
+.studio-letters-card {
+    position: relative;
+    background: var(--cream);
+    border: var(--border-thick);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    box-shadow:
+        0 24px 50px -28px rgba(26, 23, 20, 0.18),
+        0 8px 18px -10px rgba(184, 148, 90, 0.16);
+    max-width: 560px;
+    width: 100%;
+    justify-self: end;
+}
+
+/* Editorial corner brackets — same vocabulary as accreditation cert */
+.studio-letters-card::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 22px;
+    height: 22px;
+    border-top: 1.5px solid var(--gold);
+    border-left: 1.5px solid var(--gold);
+    pointer-events: none;
+}
+
+.studio-letters-card::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    border-bottom: 1.5px solid var(--gold);
+    border-right: 1.5px solid var(--gold);
+    pointer-events: none;
+}
+
+.studio-letters-kicker {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    color: var(--gold);
+    line-height: 1.4;
+    margin-bottom: 1.1rem;
+    letter-spacing: 0.005em;
+}
+
+.studio-letters-kicker em {
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* The input + submit row */
+.studio-letters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 0;
+}
+
+.studio-letters-field {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+    border-bottom: 1.5px solid var(--charcoal);
+    transition: border-color 0.4s var(--ease-out);
+}
+
+.studio-letters-field:focus-within {
+    border-bottom-color: var(--gold);
+    border-bottom-width: 2px;
+}
+
+.studio-letters-field input {
+    border: none;
+    background: transparent;
+    padding: 1rem 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--charcoal);
+    outline: none;
+    border-radius: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.studio-letters-field input::placeholder {
+    color: var(--muted);
+    opacity: 0.55;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+.studio-letters-field input:invalid:not(:placeholder-shown) {
+    color: #b3554b;
+}
+
+.studio-letters-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0 0 0 1.25rem;
+    background: transparent;
+    border: none;
+    color: var(--charcoal);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.35s var(--ease-out);
+}
+
+.studio-letters-submit svg {
+    transition: transform 0.4s var(--ease-out);
+}
+
+.studio-letters-submit:hover,
+.studio-letters-submit:focus-visible {
+    color: var(--gold);
+    outline: none;
+}
+
+.studio-letters-submit:hover svg,
+.studio-letters-submit:focus-visible svg {
+    transform: translateX(5px);
+}
+
+.studio-letters-note {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+}
+
+/* Success state — replaces the field + note in place */
+.studio-letters-form.is-success .studio-letters-field,
+.studio-letters-form.is-success .studio-letters-note {
+    display: none;
+}
+
+.studio-letters-success {
+    display: none;
+    align-items: flex-start;
+    gap: 0.85rem;
+}
+
+.studio-letters-success[hidden] {
+    display: none;
+}
+
+.studio-letters-form.is-success .studio-letters-success {
+    display: flex;
+    animation: studio-fade-up 0.55s var(--ease-out) both;
+}
+
+@keyframes studio-fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.studio-letters-success-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--cream);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.studio-letters-success p {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: var(--charcoal);
+    max-width: 32ch;
+    margin: 0;
+}
+
+.studio-letters-success em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+}
+
+
+/* =========================================
    RESPONSIVE — TABLET (max 1024px)
    ========================================= */
 @media (max-width: 1024px) {
@@ -3313,6 +3626,22 @@ footer {
     .course-detail-grid {
         grid-template-columns: 1fr;
         gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    /* Studio Letters — stack copy above form card */
+    .studio-letters-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    .studio-letters-copy {
+        max-width: 720px;
+    }
+
+    .studio-letters-card {
+        max-width: 640px;
+        justify-self: stretch;
+        margin: 0 auto;
     }
 }
 
@@ -4117,6 +4446,64 @@ footer {
         font-size: 5rem;
         line-height: 0.6;
     }
+
+    /* Studio Letters — mobile: full-width input, button below as solid CTA */
+    .studio-letters {
+        padding: clamp(3rem, 7vw, 5rem) 0;
+    }
+
+    .studio-letters::before {
+        font-size: clamp(7rem, 30vw, 13rem);
+    }
+
+    .studio-letters-card {
+        padding: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .studio-letters-card::before,
+    .studio-letters-card::after {
+        width: 18px;
+        height: 18px;
+    }
+
+    .studio-letters-field {
+        grid-template-columns: 1fr;
+        border-bottom: none;
+        gap: 0.75rem;
+    }
+
+    .studio-letters-field input {
+        border-bottom: 1.5px solid var(--charcoal);
+        padding: 0.85rem 0;
+        font-size: 1rem;
+    }
+
+    .studio-letters-field:focus-within input {
+        border-bottom-color: var(--gold);
+        border-bottom-width: 2px;
+    }
+
+    .studio-letters-submit {
+        background: var(--charcoal);
+        color: var(--cream);
+        padding: 1.05rem 1.5rem;
+        justify-content: center;
+        gap: 0.85rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out);
+    }
+
+    .studio-letters-submit:hover,
+    .studio-letters-submit:focus-visible {
+        background: var(--gold);
+        color: var(--cream);
+    }
+
+    .studio-letters-submit:hover svg,
+    .studio-letters-submit:focus-visible svg {
+        transform: translateX(4px);
+    }
 }
 
 
@@ -4355,6 +4742,19 @@ footer {
         left: -3.7rem;
         width: 3rem;
         font-size: 0.78rem;
+    }
+
+    /* Studio Letters — small phone */
+    .studio-letters-copy h2 {
+        font-size: 2rem;
+    }
+
+    .studio-letters-kicker {
+        font-size: 0.85rem;
+    }
+
+    .studio-letters-success p {
+        font-size: 1.05rem;
     }
 }
 

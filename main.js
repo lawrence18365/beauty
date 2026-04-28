@@ -162,4 +162,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    /* =========================================
+       Studio Letters — email capture
+       ========================================= */
+    document.querySelectorAll('.studio-letters-form').forEach((letterForm) => {
+        const input = letterForm.querySelector('input[type="email"]');
+        const successEl = letterForm.querySelector('.studio-letters-success');
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        letterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const value = input.value.trim();
+            if (!value || !emailRe.test(value)) {
+                input.focus();
+                input.reportValidity?.();
+                return;
+            }
+            // TODO: hook to email provider (Mailchimp / ConvertKit / etc.)
+            // For now, transition to the in-card success state.
+            letterForm.classList.add('is-success');
+            if (successEl) successEl.hidden = false;
+        });
+    });
+
 });

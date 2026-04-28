@@ -2516,6 +2516,11 @@ footer {
     scroll-margin-top: 100px;
 }
 
+/* Variant — second course-detail in a row gets a thick rule above to separate */
+.course-detail-bordered {
+    border-top: var(--border-thick);
+}
+
 .course-detail-head {
     max-width: 720px;
     margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
@@ -2725,6 +2730,13 @@ footer {
 
 .price-includes li:last-child {
     border-bottom: none;
+}
+
+.price-includes li em {
+    font-style: italic;
+    color: var(--muted);
+    font-family: var(--font-display);
+    font-size: 1.02em;
 }
 
 .price-cta {
@@ -3013,7 +3025,42 @@ footer {
     background: var(--gold);
 }
 
-/* ---- Ongoing support ---- */
+/* ---- Kit contents (lash detail) — same surface as outcomes-services ---- */
+.kit-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.kit-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1rem;
+    background: var(--cream);
+    border: 1px solid rgba(26, 23, 20, 0.08);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    line-height: 1;
+}
+
+.kit-mark {
+    font-size: 0.85rem;
+    color: var(--gold);
+    line-height: 1;
+}
+
+/* ---- Ongoing support — shared section after both course details ---- */
+.ongoing-support-section {
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    background: var(--cream);
+    border-top: var(--border-thick);
+}
+
 .ongoing-support {
     position: relative;
     display: grid;

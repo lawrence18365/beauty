@@ -164,25 +164,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================================
-       Studio Letters — email capture
+       Studio Letters — email capture (MailerLite)
+       Posts to MailerLite's public JSONP subscribe endpoint via fetch.
+       Endpoint is rate-limited (~10/min/IP) and CORS-open.
        ========================================= */
     document.querySelectorAll('.studio-letters-form').forEach((letterForm) => {
-        const input = letterForm.querySelector('input[type="email"]');
+        const nameInput = letterForm.querySelector('input[name="fields[name]"]');
+        const emailInput = letterForm.querySelector('input[type="email"]');
+        const consentInput = letterForm.querySelector('input[name="consent"]');
+        const submitBtn = letterForm.querySelector('.studio-letters-submit');
+        const submitLabel = letterForm.querySelector('.studio-letters-submit-label');
+        const errorEl = letterForm.querySelector('.studio-letters-error');
         const successEl = letterForm.querySelector('.studio-letters-success');
         const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        letterForm.addEventListener('submit', (e) => {
+        const setError = (msg) => {
+            if (!errorEl) return;
+            if (msg) {
+                errorEl.textContent = msg;
+                errorEl.hidden = false;
+            } else {
+                errorEl.textContent = '';
+                errorEl.hidden = true;
+            }
+        };
+
+        letterForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const value = input.value.trim();
-            if (!value || !emailRe.test(value)) {
-                input.focus();
-                input.reportValidity?.();
+            setError('');
+
+            const name = (nameInput?.value || '').trim();
+            const email = (emailInput?.value || '').trim();
+            const consent = consentInput?.checked;
+
+            if (!name) {
+                nameInput?.focus();
+                setError('Pop your first name in.');
                 return;
             }
-            // TODO: hook to email provider (Mailchimp / ConvertKit / etc.)
-            // For now, transition to the in-card success state.
-            letterForm.classList.add('is-success');
-            if (successEl) successEl.hidden = false;
+            if (!email || !emailRe.test(email)) {
+                emailInput?.focus();
+                setError('That email looks off — mind double-checking?');
+                return;
+            }
+            if (!consent) {
+                consentInput?.focus();
+                setError('Tick the consent box to join.');
+                return;
+            }
+
+            const originalLabel = submitLabel?.textContent;
+            submitBtn.disabled = true;
+            if (submitLabel) submitLabel.textContent = 'Sending';
+
+            try {
+                const body = new URLSearchParams();
+                body.append('fields[name]', name);
+                body.append('fields[email]', email);
+                body.append('groups[]', '186036534247426015');
+                body.append('ml-submit', '1');
+                body.append('anticsrf', 'true');
+
+                const res = await fetch(letterForm.action, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body,
+                });
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok && data.success) {
+                    letterForm.classList.add('is-success');
+                    if (successEl) successEl.hidden = false;
+                } else {
+                    setError("Couldn't sign you up just now — try again in a moment.");
+                    submitBtn.disabled = false;
+                    if (submitLabel) submitLabel.textContent = originalLabel;
+                }
+            } catch (err) {
+                setError("Couldn't reach the server — check your connection and try again.");
+                submitBtn.disabled = false;
+                if (submitLabel) submitLabel.textContent = originalLabel;
+            }
         });
     });
 

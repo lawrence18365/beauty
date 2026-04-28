@@ -3297,6 +3297,38 @@ footer {
     margin: 0;
 }
 
+/* Standalone name input — same ruled-line vocabulary as the email field */
+.studio-letters-row {
+    border-bottom: 1.5px solid var(--charcoal);
+    transition: border-color 0.4s var(--ease-out);
+}
+
+.studio-letters-row:focus-within {
+    border-bottom-color: var(--gold);
+    border-bottom-width: 2px;
+}
+
+.studio-letters-row input {
+    border: none;
+    background: transparent;
+    padding: 1rem 0;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--charcoal);
+    outline: none;
+    border-radius: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.studio-letters-row input::placeholder {
+    color: var(--muted);
+    opacity: 0.55;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
 .studio-letters-field {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -3378,9 +3410,99 @@ footer {
     max-width: none;
 }
 
-/* Success state — replaces the field + note in place */
+/* Custom checkbox — bespoke editorial mark that visually echoes the
+   gold corner brackets and tenet-mark vocabulary used elsewhere */
+.studio-letters-consent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.7rem;
+    align-items: start;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 0.15rem;
+}
+
+.studio-letters-consent input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.studio-letters-consent-mark {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--charcoal);
+    background: var(--cream);
+    color: var(--cream);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    margin-top: 0.05rem;
+}
+
+.studio-letters-consent-mark svg {
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.2s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.studio-letters-consent input[type="checkbox"]:checked + .studio-letters-consent-mark {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+.studio-letters-consent input[type="checkbox"]:checked + .studio-letters-consent-mark svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.studio-letters-consent input[type="checkbox"]:focus-visible + .studio-letters-consent-mark {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.studio-letters-consent-text {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--charcoal);
+    opacity: 0.85;
+    letter-spacing: 0.005em;
+    padding-top: 0.1rem;
+}
+
+/* Error state — small red note */
+.studio-letters-error {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+    color: #b3554b;
+    margin: 0;
+    padding: 0.4rem 0.65rem;
+    background: rgba(179, 85, 75, 0.07);
+    border-left: 2px solid #b3554b;
+}
+
+/* Disabled submit while sending */
+.studio-letters-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.studio-letters-submit:disabled:hover svg {
+    transform: none;
+}
+
+/* Success state — replaces the entire form body with the success card */
+.studio-letters-form.is-success .studio-letters-row,
 .studio-letters-form.is-success .studio-letters-field,
-.studio-letters-form.is-success .studio-letters-note {
+.studio-letters-form.is-success .studio-letters-consent,
+.studio-letters-form.is-success .studio-letters-note,
+.studio-letters-form.is-success .studio-letters-error {
     display: none;
 }
 

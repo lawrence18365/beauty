@@ -639,8 +639,9 @@
         </section>
         <!-- ============================================
              STUDIO LETTERS — email capture
-             Editorial subscription card. Cream-dark canvas with
-             a faint italic "Letters" watermark and an inline form.
+             Posts to MailerLite's public JSONP endpoint (auth-free,
+             rate-limited, CORS-open). Subscribers land in the
+             "Studio Letters" group; double opt-in handles consent.
              ============================================ -->
         <section class="studio-letters" data-deco="Letters">
             <div class="container">
@@ -657,25 +658,53 @@
                     </div>
                     <div class="studio-letters-card">
                         <span class="studio-letters-kicker"><em>— A letter, monthly</em></span>
-                        <form class="studio-letters-form" novalidate aria-labelledby="studio-letters-heading">
+                        <form
+                            class="studio-letters-form"
+                            action="https://assets.mailerlite.com/jsonp/2210035/forms/182519995998143979/subscribe"
+                            method="post"
+                            novalidate
+                        >
+                            <input type="hidden" name="ml-submit" value="1">
+                            <input type="hidden" name="anticsrf" value="true">
+                            <input type="hidden" name="groups[]" value="186036534247426015">
+
+                            <div class="studio-letters-row">
+                                <label for="studio-letters-name" class="visually-hidden">Your first name</label>
+                                <input type="text" id="studio-letters-name" name="fields[name]" placeholder="First name" required autocomplete="given-name" maxlength="80">
+                            </div>
+
                             <div class="studio-letters-field">
                                 <label for="studio-letters-email" class="visually-hidden">Email address</label>
-                                <input type="email" id="studio-letters-email" name="email" placeholder="your.email@example.com" required autocomplete="email" spellcheck="false">
+                                <input type="email" id="studio-letters-email" name="fields[email]" placeholder="your.email@example.com" required autocomplete="email" spellcheck="false">
                                 <button type="submit" class="studio-letters-submit">
-                                    <span>Join the list</span>
+                                    <span class="studio-letters-submit-label">Join the list</span>
                                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
                                         <path d="M4 12h16M14 6l6 6-6 6"/>
                                     </svg>
                                 </button>
                             </div>
+
+                            <label class="studio-letters-consent">
+                                <input type="checkbox" name="consent" value="yes" required>
+                                <span class="studio-letters-consent-mark" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </span>
+                                <span class="studio-letters-consent-text">I'd like to hear about course dates &amp; studio news.</span>
+                            </label>
+
                             <p class="studio-letters-note">No spam. Never shared. Unsubscribe anytime.</p>
+
+                            <p class="studio-letters-error" role="alert" hidden></p>
+
                             <div class="studio-letters-success" role="status" aria-live="polite" hidden>
                                 <span class="studio-letters-success-mark" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M5 13l4 4L19 7"/>
                                     </svg>
                                 </span>
-                                <p><em>Thanks.</em> You're on the list — first letter on its way.</p>
+                                <p><em>Almost there.</em> Check your inbox to confirm — first letter on its way after.</p>
                             </div>
                         </form>
                     </div>

@@ -3121,6 +3121,173 @@ footer {
 
 
 /* =========================================
+   STUDIO LETTERS POPUP — modal email capture
+   Triggered by JS once per visitor on time / scroll / exit-intent.
+   Native <dialog> for built-in focus trap + Esc-to-close.
+   ========================================= */
+.studio-popup {
+    /* Reset native dialog defaults */
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: auto;
+    color: var(--charcoal);
+    max-width: min(540px, calc(100vw - 2rem));
+    width: 100%;
+    overflow: visible;
+    /* hidden until JS opens it via showModal() */
+}
+
+.studio-popup::backdrop {
+    background: rgba(26, 23, 20, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: studio-popup-backdrop-in 0.4s var(--ease-out) both;
+}
+
+@keyframes studio-popup-backdrop-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.studio-popup[open] .studio-popup-card {
+    animation: studio-popup-card-in 0.55s var(--ease-out) both;
+}
+
+@keyframes studio-popup-card-in {
+    from { opacity: 0; transform: translateY(14px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.studio-popup-card {
+    position: relative;
+    background: var(--cream);
+    border: var(--border-thick);
+    padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3.5vw, 2.5rem) clamp(1.5rem, 3vw, 2rem);
+    box-shadow:
+        0 32px 80px -28px rgba(0, 0, 0, 0.45),
+        0 12px 28px -14px rgba(184, 148, 90, 0.22);
+}
+
+/* Gold corner brackets — same vocabulary as the inline form card */
+.studio-popup-card::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 24px;
+    height: 24px;
+    border-top: 1.5px solid var(--gold);
+    border-left: 1.5px solid var(--gold);
+    pointer-events: none;
+}
+
+.studio-popup-card::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    border-bottom: 1.5px solid var(--gold);
+    border-right: 1.5px solid var(--gold);
+    pointer-events: none;
+}
+
+/* Close button */
+.studio-popup-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.studio-popup-close:hover,
+.studio-popup-close:focus-visible {
+    color: var(--charcoal);
+    outline: none;
+    transform: rotate(90deg);
+}
+
+.studio-popup-close svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Header inside the popup card */
+.studio-popup-kicker {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.92rem;
+    color: var(--gold);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.005em;
+}
+
+.studio-popup-card h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.85rem, 3vw, 2.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    color: var(--charcoal);
+    margin-bottom: 0.85rem;
+    max-width: 14ch;
+}
+
+.studio-popup-card h2 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+}
+
+.studio-popup-lede {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+    max-width: 44ch;
+}
+
+/* "No, thanks" escape hatch */
+.studio-popup-decline {
+    display: block;
+    margin-top: 0.85rem;
+    background: none;
+    border: none;
+    padding: 0.4rem 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.25s var(--ease-out);
+    text-align: center;
+    width: 100%;
+}
+
+.studio-popup-decline:hover,
+.studio-popup-decline:focus-visible {
+    color: var(--charcoal);
+    outline: none;
+}
+
+
+/* =========================================
    STUDIO LETTERS — Email capture (site-wide)
    Editorial subscription card on cream-dark canvas with a faint
    italic "Letters" watermark. Lives above the footer on every page.
@@ -4567,6 +4734,40 @@ footer {
     .ongoing-support-mark {
         font-size: 5rem;
         line-height: 0.6;
+    }
+
+    /* Studio Letters POPUP — bottom-sheet on mobile, polite & non-intrusive */
+    .studio-popup {
+        max-width: 100vw;
+        max-height: 90vh;
+        margin: auto auto 0 auto; /* pin to bottom */
+        width: 100%;
+    }
+
+    .studio-popup-card {
+        padding: 1.5rem 1.25rem 1.25rem;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    .studio-popup-card::before {
+        top: -8px;
+        left: 12px;
+    }
+
+    .studio-popup-card::after {
+        display: none;
+    }
+
+    @keyframes studio-popup-card-in {
+        from { opacity: 0; transform: translateY(100%); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .studio-popup-close {
+        top: 0.5rem;
+        right: 0.5rem;
     }
 
     /* Studio Letters — mobile: full-width input, button below as solid CTA */

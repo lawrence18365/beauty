@@ -151,19 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================================
-       Contact Form
-       ========================================= */
-    const form = document.querySelector('.contact-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert("Thanks for your message. I'll be back to you soon.");
-            form.reset();
-        });
-    }
-
-
-    /* =========================================
        Studio Letters POPUP — modal email capture
        Triggers (whichever fires first):
          · 15s on page

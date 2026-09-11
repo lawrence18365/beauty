@@ -1685,13 +1685,12 @@ header nav {
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr;
     border: 1px solid rgba(250, 246, 240, 0.12);
 }
 
 .contact-info {
     padding: clamp(2.5rem, 4vw, 4rem);
-    border-right: 1px solid rgba(250, 246, 240, 0.12);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1730,13 +1729,6 @@ header nav {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-}
-
-.contact-form {
-    padding: clamp(2.5rem, 4vw, 4rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .form-row {
@@ -3821,11 +3813,6 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .contact-info {
-        border-right: none;
-        border-bottom: 1px solid rgba(250, 246, 240, 0.12);
-    }
-
     .footer-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -4598,11 +4585,6 @@ footer {
     /* Contact — mobile */
     .contact-grid {
         grid-template-columns: 1fr;
-    }
-
-    .contact-info {
-        border-right: none;
-        border-bottom: 1px solid rgba(250, 246, 240, 0.12);
     }
 
     .form-row {
